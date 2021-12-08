@@ -112,7 +112,7 @@ public class BookingServer extends BookingSystemImplBase {
 			e.printStackTrace();
 		}
 		
-		HelloReply2 reply2_3 = HelloReply2.newBuilder().setMessage2("How was your stay, we would love if you could rate your experience with Bookings.org " + request2.getName2()).build();
+		HelloReply2 reply2_3 = HelloReply2.newBuilder().setMessage2("How was your stay, we would love if you could rate your experience with gRPC Bookings.org " + request2.getName2()).build();
 		responseObserver.onNext(reply2_3);
 		
 		

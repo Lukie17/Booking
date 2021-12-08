@@ -66,7 +66,7 @@ public class BookingClient {
 
 			@Override
 			public void onNext(HelloReply2 value) {
-				System.out.println("Email from Grpc Bookings.org: " + value.getMessage2());
+				System.out.println("Email from gRPC Bookings.org: " + value.getMessage2());
 				
 			}
 
