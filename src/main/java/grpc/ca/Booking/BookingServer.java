@@ -20,10 +20,10 @@ public class BookingServer extends BookingSystemImplBase {
 		//get two more classes like this and have different ports
 		//unary
 		System.out.println("Starting gRPC Booking Server");
-		reg.run("_booking._tcp.local.", "Booking", 50051, "Running booking");
+		reg.run("_booking._tcp.local.", "Booking", port, "Running booking");
 		//server streaming
 		System.out.println("Starting gRPC Booking Third Party Server");
-		reg.run("_bookingThirdParty._tcp.local.", "bookingThirdParty", 50051, "Running bookingThirdParty system");
+		reg.run("_bookingThirdParty._tcp.local.", "bookingThirdParty", port, "Running bookingThirdParty system");
 		
 		
 		

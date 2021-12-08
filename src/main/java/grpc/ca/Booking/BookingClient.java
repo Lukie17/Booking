@@ -31,6 +31,7 @@ public class BookingClient {
 		asyncStub = BookingSystemGrpc.newStub(channel1);
 
 		try {
+			
 			// unary
 			System.out.println("--Unary streaming--");
 			HelloRequest1 request1 = HelloRequest1.newBuilder().setName1("reservation confirmed").build();
