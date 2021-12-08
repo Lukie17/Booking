@@ -1,3 +1,9 @@
+/*
+ * Luke T
+ * BookingClient.java
+ * 07/12/21 
+ */
+
 package grpc.ca.Booking;
 
 import java.util.concurrent.TimeUnit;
@@ -20,18 +26,17 @@ public class BookingClient {
 		String host = "localhost";
 
 		ServiceInfo serviceInfo = JmDNSDiscovery.run("_booking._tcp.local.");
-		
+
 		JmDNSDiscovery.run("_bookingThirdParty._tcp.local.");
 
 		ManagedChannel channel1 = ManagedChannelBuilder.forAddress(host, serviceInfo.getPort()).usePlaintext().build();
-		
-		
+
 		BookingSystemBlockingStub stub = BookingSystemGrpc.newBlockingStub(channel1);
 
 		asyncStub = BookingSystemGrpc.newStub(channel1);
 
 		try {
-			
+
 			// unary
 			System.out.println("--Unary streaming--");
 			HelloRequest1 request1 = HelloRequest1.newBuilder().setName1("reservation confirmed").build();
@@ -40,7 +45,7 @@ public class BookingClient {
 			try {
 				Thread.sleep(10000);
 			} catch (InterruptedException e) {
-			
+
 				e.printStackTrace();
 			}
 			// server streaming
@@ -62,12 +67,10 @@ public class BookingClient {
 
 		StreamObserver<HelloReply2> responseObserver = new StreamObserver<HelloReply2>() {
 
-			
-
 			@Override
 			public void onNext(HelloReply2 value) {
 				System.out.println("Email from gRPC Bookings.org: " + value.getMessage2());
-				
+
 			}
 
 			@Override
