@@ -1,5 +1,7 @@
 package grpc.ca.Booking;
 
+import javax.swing.JOptionPane;
+
 import grpc.ca.Booking.BookingSystemGrpc.BookingSystemImplBase;
 import io.grpc.Server;
 import io.grpc.ServerBuilder;
@@ -16,9 +18,14 @@ public class BookingServer extends BookingSystemImplBase {
 		JmDNSRegistration reg = new JmDNSRegistration();
 		
 		//get two more classes like this and have different ports
+		//unary
+		System.out.println("Starting gRPC Booking Server");
 		reg.run("_booking._tcp.local.", "Booking", 50051, "Running booking");
+		//server streaming
+		System.out.println("Starting gRPC Booking Third Party Server");
 		reg.run("_bookingThirdParty._tcp.local.", "bookingThirdParty", 50051, "Running bookingThirdParty system");
-		//reg.run("_chatSupport._tcp.local.", "chatSupport", 50002, "Running chatSupport system");
+		
+		
 		
 		try {
 			Server server = ServerBuilder.forPort(port).addService(server1).build().start();
@@ -40,9 +47,28 @@ public class BookingServer extends BookingSystemImplBase {
 		
 		System.out.println("You called the server");
 		
-		HelloReply1 reply1 = HelloReply1.newBuilder().setMessage1("Hello Luke, " + request1.getName1()).build();
 		
-		responseObserver.onNext(reply1);
+		Object[] options = {"A hotel?", "A flight?", "A rental car?"};
+		int reservation = JOptionPane.showOptionDialog(null, "What will you book today?", "Reservation", JOptionPane.YES_NO_CANCEL_OPTION,JOptionPane.QUESTION_MESSAGE,null,options,options[2]);
+		
+		if(reservation == 0){
+		
+			HelloReply1 reply1 = HelloReply1.newBuilder().setMessage1("Hello Luke, you have chose to book a hotel, " + request1.getName1()).build();
+			responseObserver.onNext(reply1);
+		}
+		else if (reservation == 1) {
+			HelloReply1 reply1 = HelloReply1.newBuilder().setMessage1("Hello Luke, you have chose to book a flight, " + request1.getName1()).build();
+			responseObserver.onNext(reply1);
+		}
+		else if(reservation == 2){
+			HelloReply1 reply1 = HelloReply1.newBuilder().setMessage1("Hello Luke, you have chose to book a rental car, " + request1.getName1()).build();
+			responseObserver.onNext(reply1);
+		}
+		
+		
+		
+		
+		
 		responseObserver.onCompleted();
 		
 		
@@ -53,31 +79,36 @@ public class BookingServer extends BookingSystemImplBase {
 	public void getBookingThirdParty(HelloRequest2 request2, StreamObserver<HelloReply2> responseObserver) {
 		
 		System.out.println("You called the server for server streaming");
-		
+		try {
+			Thread.sleep(5000);
+		} catch (InterruptedException e) {
+			
+			e.printStackTrace();
+		}
 		HelloReply2 reply2 = HelloReply2.newBuilder().setMessage2("Hello " + request2.getName2()).build();
 		
 		responseObserver.onNext(reply2);
 		try {
-			Thread.sleep(500);
+			Thread.sleep(5000);
 		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
+			
 			e.printStackTrace();
 		}
 		HelloReply2 reply2_1 = HelloReply2.newBuilder().setMessage2("Your reservation is confirmed " + request2.getName2()).build();
 		responseObserver.onNext(reply2_1);
 		try {
-			Thread.sleep(500);
+			Thread.sleep(5000);
 		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
+			
 			e.printStackTrace();
 		}
 		
-		HelloReply2 reply2_2 = HelloReply2.newBuilder().setMessage2("If there is anything we can help with for example, a rental car, shuttle service, or recommendations on where to go, please let us know " + request2.getName2()).build();
+		HelloReply2 reply2_2 = HelloReply2.newBuilder().setMessage2("If there is anything we can help with for example, shuttle service, or recommendations on where to go, please let us know " + request2.getName2()).build();
 		responseObserver.onNext(reply2_2);
 		try {
-			Thread.sleep(500);
+			Thread.sleep(5000);
 		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
+			
 			e.printStackTrace();
 		}
 		
