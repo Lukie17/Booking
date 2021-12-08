@@ -23,7 +23,6 @@ public class BookingServer extends BookingSystemImplBase {
 
 		JmDNSRegistration reg = new JmDNSRegistration();
 
-		// get two more classes like this and have different ports
 		// unary
 		System.out.println("Starting gRPC Booking Server");
 		reg.run("_booking._tcp.local.", "Booking", port, "Running booking");
