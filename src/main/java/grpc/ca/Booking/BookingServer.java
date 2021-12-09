@@ -25,10 +25,10 @@ public class BookingServer extends BookingSystemImplBase {
 
 		// unary
 		System.out.println("Starting gRPC Booking Server");
-		reg.run("_booking._tcp.local.", "booking", port, "running booking system");
+		reg.run("_booking._tcp.local.", "booking", port, "running the booking system");
 		// server streaming
 		System.out.println("Starting gRPC Booking Third Party Server");
-		reg.run("_bookingThirdParty._tcp.local.", "bookingThirdParty", port, "running bookingThirdParty system");
+		reg.run("_bookingThirdParty._tcp.local.", "bookingThirdParty", port, "running the bookingThirdParty system");
 
 		try {
 			Server server = ServerBuilder.forPort(port).addService(server1).build().start();
@@ -83,7 +83,7 @@ public class BookingServer extends BookingSystemImplBase {
 
 			e.printStackTrace();
 		}
-		HelloReply2 reply2 = HelloReply2.newBuilder().setMessage2("Hello " + request2.getName2()).build();
+		HelloReply2 reply2 = HelloReply2.newBuilder().setMessage2("Hello Luke " + request2.getName2()).build();
 
 		responseObserver.onNext(reply2);
 		try {
