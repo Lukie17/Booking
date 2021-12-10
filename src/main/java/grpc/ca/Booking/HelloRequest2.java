@@ -4,6 +4,10 @@
 package grpc.ca.Booking;
 
 /**
+ * <pre>
+ *server streaming
+ * </pre>
+ *
  * Protobuf type {@code HelloRequest2}
  */
 public  final class HelloRequest2 extends
@@ -271,6 +275,10 @@ private static final long serialVersionUID = 0L;
     return builder;
   }
   /**
+   * <pre>
+   *server streaming
+   * </pre>
+   *
    * Protobuf type {@code HelloRequest2}
    */
   public static final class Builder extends

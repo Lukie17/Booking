@@ -120,7 +120,7 @@ public final class BookingSystemGrpc {
 
     /**
      * <pre>
-     *unary streaming
+     *unary
      * </pre>
      */
     public void getBooking(grpc.ca.Booking.HelloRequest1 request,
@@ -178,7 +178,7 @@ public final class BookingSystemGrpc {
 
     /**
      * <pre>
-     *unary streaming
+     *unary
      * </pre>
      */
     public void getBooking(grpc.ca.Booking.HelloRequest1 request,
@@ -219,7 +219,7 @@ public final class BookingSystemGrpc {
 
     /**
      * <pre>
-     *unary streaming
+     *unary
      * </pre>
      */
     public grpc.ca.Booking.HelloReply1 getBooking(grpc.ca.Booking.HelloRequest1 request) {
@@ -259,7 +259,7 @@ public final class BookingSystemGrpc {
 
     /**
      * <pre>
-     *unary streaming
+     *unary
      * </pre>
      */
     public com.google.common.util.concurrent.ListenableFuture<grpc.ca.Booking.HelloReply1> getBooking(

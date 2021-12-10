@@ -15,8 +15,10 @@ import io.grpc.Server;
 import io.grpc.ServerBuilder;
 import io.grpc.stub.StreamObserver;
 
+//class
 public class BookingServer extends BookingSystemImplBase {
 
+	// main method
 	public static void main(String[] args) throws InterruptedException, IOException {
 
 		int port = 50051;
@@ -27,9 +29,11 @@ public class BookingServer extends BookingSystemImplBase {
 
 		// unary
 		System.out.println("Starting gRPC Booking Server");
+		// jmdns data to registration
 		reg.run("_booking._tcp.local.", "Booking", port, "the booking system");
 		// server streaming
 		System.out.println("Starting gRPC Booking Third Party Server");
+		// jmdns data to registration
 		reg.run("_bookingThirdParty._tcp.local.", "BookingThirdParty", port, "the bookingThirdParty system");
 
 		try {
@@ -42,11 +46,10 @@ public class BookingServer extends BookingSystemImplBase {
 			e.printStackTrace();
 
 		}
-		
 
 	}
 
-	// unary
+	// unary method
 	@Override
 	public void getBooking(HelloRequest1 request1, StreamObserver<HelloReply1> responseObserver) {
 
@@ -78,7 +81,7 @@ public class BookingServer extends BookingSystemImplBase {
 
 	}
 
-	// server streaming
+	// server streaming method
 	@Override
 	public void getBookingThirdParty(HelloRequest2 request2, StreamObserver<HelloReply2> responseObserver) {
 

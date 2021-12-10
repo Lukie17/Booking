@@ -17,10 +17,12 @@ import io.grpc.ManagedChannelBuilder;
 import io.grpc.StatusRuntimeException;
 import io.grpc.stub.StreamObserver;
 
+//class
 public class BookingClient {
 
 	private static BookingSystemStub asyncStub;
 
+	// main method
 	public static void main(String[] args) throws InterruptedException {
 
 		String host = "localhost";
