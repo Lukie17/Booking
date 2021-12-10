@@ -1,3 +1,5 @@
+
+
 syntax = "proto3";
 
 option java_multiple_files = true;
@@ -5,13 +7,14 @@ option java_package = "grpc.ca.Booking";
 option java_outer_classname = "NewServiceImpl1";
 
 service BookingSystem {
-	//unary streaming
+	//unary
 	rpc GetBooking(HelloRequest1) returns (HelloReply1){}
 
 	//server streaming
 	rpc GetBookingThirdParty(HelloRequest2) returns (stream HelloReply2){}
 }
 
+//unary
 message HelloRequest1 {
 	string name1 = 1;
 }
@@ -19,6 +22,8 @@ message HelloRequest1 {
 message HelloReply1 {
 	string message1 = 1;
 }
+
+//server streaming
 message HelloRequest2{
 	string name2 = 1;
 }

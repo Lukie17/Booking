@@ -6,6 +6,8 @@
 
 package grpc.ca.Booking;
 
+import java.io.IOException;
+
 import javax.swing.JOptionPane;
 
 import grpc.ca.Booking.BookingSystemGrpc.BookingSystemImplBase;
@@ -15,7 +17,7 @@ import io.grpc.stub.StreamObserver;
 
 public class BookingServer extends BookingSystemImplBase {
 
-	public static void main(String[] args) throws InterruptedException {
+	public static void main(String[] args) throws InterruptedException, IOException {
 
 		int port = 50051;
 
@@ -25,10 +27,10 @@ public class BookingServer extends BookingSystemImplBase {
 
 		// unary
 		System.out.println("Starting gRPC Booking Server");
-		reg.run("_booking._tcp.local.", "booking", port, "running the booking system");
+		reg.run("_booking._tcp.local.", "Booking", port, "the booking system");
 		// server streaming
 		System.out.println("Starting gRPC Booking Third Party Server");
-		reg.run("_bookingThirdParty._tcp.local.", "bookingThirdParty", port, "running the bookingThirdParty system");
+		reg.run("_bookingThirdParty._tcp.local.", "BookingThirdParty", port, "the bookingThirdParty system");
 
 		try {
 			Server server = ServerBuilder.forPort(port).addService(server1).build().start();
@@ -40,6 +42,7 @@ public class BookingServer extends BookingSystemImplBase {
 			e.printStackTrace();
 
 		}
+		
 
 	}
 
@@ -58,14 +61,17 @@ public class BookingServer extends BookingSystemImplBase {
 			HelloReply1 reply1 = HelloReply1.newBuilder()
 					.setMessage1("Hello Luke, you have chose to book a hotel, " + request1.getName1()).build();
 			responseObserver.onNext(reply1);
+			JOptionPane.showMessageDialog(null, "You have chose a hotel");
 		} else if (reservation == 1) {
 			HelloReply1 reply1 = HelloReply1.newBuilder()
 					.setMessage1("Hello Luke, you have chose to book a flight, " + request1.getName1()).build();
 			responseObserver.onNext(reply1);
+			JOptionPane.showMessageDialog(null, "You have chose a flight");
 		} else if (reservation == 2) {
 			HelloReply1 reply1 = HelloReply1.newBuilder()
 					.setMessage1("Hello Luke, you have chose to book a rental car, " + request1.getName1()).build();
 			responseObserver.onNext(reply1);
+			JOptionPane.showMessageDialog(null, "You have chose a rental car");
 		}
 
 		responseObserver.onCompleted();
